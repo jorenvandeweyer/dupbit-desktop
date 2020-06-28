@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body {
+    height: 100%;
+
+    background-color: black;
+    color: white;
+
+    // font-family: 'Roboto', sans-serif;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+#app {
+    height: 100%;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+    color: #fff;
+    background-color: #000;
+    border-color: #fff;
+    border-width: 1px;
+    border-radius: 0.25rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+input:disabled {
+    background-color: #ffffff33;
+    color: #fff;
+    border-color: #ffffff33;
+
+}
