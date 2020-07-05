@@ -13,26 +13,29 @@
   },
   "main": "background.js",
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "keytar": "^6.0.1",
     "lock-system": "^2.0.0",
     "loudness": "^0.3.0",
     "sass": "^1.26.9",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^9.0.1",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
+    "vue-router": "^3.3.4",
     "ws-async": "github:jorenvandeweyer/ws-async"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
+    "@vue/cli-plugin-babel": "~4.4.6",
+    "@vue/cli-plugin-eslint": "~4.4.6",
+    "@vue/cli-plugin-router": "~4.4.6",
+    "@vue/cli-service": "~4.4.6",
     "babel-eslint": "^10.1.0",
-    "electron": "^9.0.0",
-    "eslint": "^6.7.2",
+    "electron": "^9.0.5",
+    "eslint": "^7.4.0",
     "eslint-plugin-vue": "^6.2.2",
-    "vue-cli-plugin-electron-builder": "~2.0.0-rc.3",
+    "native-ext-loader": "^2.3.0",
+    "vue-cli-plugin-electron-builder": "~2.0.0-rc.4",
     "vue-template-compiler": "^2.6.11"
   }
 }

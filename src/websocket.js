@@ -2,6 +2,7 @@ import { WebSocketClient } from 'ws-async';
 import WebSocketHelper from 'ws-async/src/helpers/WebSocket';
 
 import volume from './actions/volume';
+import screen from './actions/screen';
 
 export default class extends WebSocketClient {
     constructor(store) {
@@ -89,6 +90,7 @@ export default class extends WebSocketClient {
 
 const ACTIONS = {
     ...volume,
+    ...screen,
     'list': {
         input: null,
         descripion: 'List',

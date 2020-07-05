@@ -1,5 +1,4 @@
 import { exec } from 'child_process';
-import { powerMonitor } from 'electron';
 import lockSystem from 'lock-system';
 
 const isMac = process.platform === 'darwin'
