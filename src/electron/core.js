@@ -15,12 +15,8 @@ class Core extends EventEmitter {
         this.setup();
 
         ipcMain.handle('login', async (event, data) => {
-            console.log(data)
             const response = await this.request.post('/account/login', data);
-            console.log(response);
-
             const result = response.data;
-            console.log(result);
 
             if (result && result.success) {
                 this.store.auth = result.user;
