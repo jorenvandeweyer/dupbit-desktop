@@ -41,7 +41,7 @@ function createWindow() {
         // if (!process.env.IS_TEST) win.webContents.openDevTools()
     } else {
         createProtocol('app');
-        win.loadURL('app://./index.html');
+        core.win.loadURL('app://./index.html');
     }
 
     core.win.on('closed', () => {
