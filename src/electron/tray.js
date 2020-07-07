@@ -1,7 +1,9 @@
 import { app, Menu, Tray } from 'electron';
 
 function createTray(core) {
+    // eslint-disable-next-line no-undef
     const trayImage = __static + "/img/macos/iconTemplate.png";
+    // eslint-disable-next-line no-undef
     const trayImagePressed = __static + "/img/macos/pressedIconTemplate.png";
 
 
@@ -87,61 +89,23 @@ function createContextMenu(core) {
             }
         },
         { type: 'separator' },
-        // {
-        //     ud: "settings",
-        //     label: "Settings",
-        //     submenu: [
-        //         {
-        //             id: "startonlogin",
-        //             label: "Start on log in",
-        //             type: "checkbox",
-        //             checked: app.getLoginItemSettings().openAtLogin,
-        //             click: () => {
-        //                 const boot = app.getLoginItemSettings().openAtLogin;
-        //                 if (boot && platform === "darwin") {
-        //                     exec(`osascript -e 'tell application "System Events" to delete login item "Dupbit"'`);
-        //                 }
-        //                 app.setLoginItemSettings({
-        //                     openAtLogin: !boot,
-        //                 });
-        //             }
-        //         },
-        //         {
-        //             id: "opensettings",
-        //             label: "Open settings",
-        //             type: "normal",
-        //             click: () => {
-        //                 handler.sendFrontend("screen", {
-        //                     screen: "settings"
-        //                 });
-        //                 openWindow();
-        //             }
-        //         },
-        //         { type: "separator" },
-        //         {
-        //             id: "checkforupdate",
-        //             label: "Check for update",
-        //             type: "normal",
-        //             click: () => {
-        //                 autoUpdater.checkForUpdatesAndNotify();
-        //             }
-        //         },
-        //         { type: "separator" },
-        //         {
-        //             id: "debug",
-        //             label: "Debug",
-        //             type: "checkbox",
-        //             checked: global && global.settings && global.settings.get("debug"),
-        //             click: function() {
-        //                 if(global && global.settings) {
-        //                     const debug = global && global.settings && global.settings.get("debug");
-        //                     global.settings.set('debug', !debug);
-        //                     contextMenu.getMenuItemById("debug").checked = global && global.settings && global.settings.get("debug");
-        //                 }
-        //             }
-        //         }
-        //     ],
-        // },
+        {
+            ud: "settings",
+            label: "Settings",
+            submenu: [
+                {
+                    id: "startonlogin",
+                    label: "Start on log in",
+                    type: "checkbox",
+                    checked: app.getLoginItemSettings().openAtLogin,
+                    click: () => {
+                        app.setLoginItemSettings({
+                            openAtLogin: !app.getLoginItemSettings().openAtLogin,
+                        });
+                    }
+                },
+            ],
+        },
         { type: 'separator' },
         {
             id: "show",
