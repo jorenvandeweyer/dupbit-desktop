@@ -10,37 +10,40 @@ export default class extends WebSocketClient {
 
         this.store = store;
 
+        this._shouldRetry = true;
         this._retry = 0;
         this._delays = [0, 1, 3, 5, 15, 30];
 
 
         this.on('close', () => {
-            console.log('ws closed');
             this.reconnect();
         });
 
         this.on('open', () => {
-            console.log('ws opened');
             this._retry = 0;
         });
 
-        this.on('error', () => {
-            console.log('ws error');
+        this.on('error', (err) => {
+            console.log('ws error', err);
         });
 
         this.on('message', (message) => {
             this.handle(message);
         });
-
-        this.reconnect();
     }
 
-    async reconnect() {
+    async reconnect(shouldRetry=false) {
+        if (!this._shouldRetry && !shouldRetry) return;
+
         console.log('reconnecting...');
         if (!this.store.auth) {
+            this._shouldRetry = false;
+            this.emit('close');
             console.error('cant reconnect not authenticated');
             return;
         }
+
+        this.emit('reconnecting');
 
         if (this._retry > 0) {
             if (this._retry >= this._delays.length) {
@@ -56,7 +59,7 @@ export default class extends WebSocketClient {
 
         this._retry++;
 
-        const ws = new WebSocketHelper(`${this.store.ws_host}`, {
+        const ws = new WebSocketHelper(this.store.api_host, {
             headers: {
                 authorization: this.store.token,
             }

@@ -21,7 +21,7 @@ new Vue({
     render: h => h(App)
 }).$mount('#app');
 
-ipcRenderer.on('logout', () => {
+ipcRenderer.on('signed-out', () => {
     store.auth = null;
-    router.go();
+    router.push('/login');
 });
