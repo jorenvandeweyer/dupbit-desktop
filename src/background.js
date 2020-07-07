@@ -1,11 +1,15 @@
-import { app, protocol, BrowserWindow } from 'electron'
-import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
+import { app, protocol, BrowserWindow } from 'electron';
+protocol.registerSchemesAsPrivileged([
+    { scheme: 'app', privileges: { secure: true, standard: true } }
+]);
+
+import { createProtocol } from 'vue-cli-plugin-electron-builder/lib';
+import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer';
 
 import createTray from './electron/tray.js';
 import Core from './electron/core';
 
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = process.env.NODE_ENV !== 'production';
 
 global.store = {
     auth: null,
@@ -21,11 +25,7 @@ core.on('open-window', () => {
     } else {
         createWindow();
     }
-})
-
-protocol.registerSchemesAsPrivileged([
-    { scheme: 'app', privileges: { secure: true, standard: true } }
-])
+});
 
 function createWindow() {
     core.win = new BrowserWindow({
@@ -38,7 +38,6 @@ function createWindow() {
 
     if (process.env.WEBPACK_DEV_SERVER_URL) {
         core.win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
-        // if (!process.env.IS_TEST) win.webContents.openDevTools()
     } else {
         createProtocol('app');
         core.win.loadURL('app://./index.html');
@@ -63,7 +62,6 @@ app.on('activate', () => {
 
 app.on('ready', async () => {
     if (isDev && !process.env.IS_TEST) {
-        // Install Vue Devtools
         try {
             await installExtension(VUEJS_DEVTOOLS)
         } catch (e) {
