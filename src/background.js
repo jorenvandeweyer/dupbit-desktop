@@ -31,6 +31,7 @@ function createWindow() {
     core.win = new BrowserWindow({
         width: 800,
         height: 600,
+        skipTaskbar: true,
         webPreferences: {
             nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
         }
@@ -67,6 +68,10 @@ app.on('ready', async () => {
         } catch (e) {
             console.error('Vue Devtools failed to install:', e.toString())
         }
+    }
+
+    if (process.platform === "darwin") {
+        app.dock.hide();
     }
 
     core.tray = createTray(core);

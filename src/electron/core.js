@@ -20,6 +20,10 @@ class Core extends EventEmitter {
     }
 
     async setup() {
+        ipcMain.handle('login', (event, data) => {
+            return this.signin(data.username, data.password);
+        });
+
         await this.validateToken();
 
         this.ws = new Websocket(this.store);
@@ -39,10 +43,6 @@ class Core extends EventEmitter {
             if (this.win) {
                 this.win.webContents.send('signed-out');
             }
-        });
-
-        ipcMain.handle('login', (event, data) => {
-            return this.signin(data.username, data.password);
         });
     }
 

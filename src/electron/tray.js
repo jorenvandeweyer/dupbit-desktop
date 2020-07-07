@@ -2,12 +2,14 @@ import { app, Menu, Tray } from 'electron';
 
 function createTray(core) {
     // eslint-disable-next-line no-undef
-    const trayImage = __static + "/img/macos/iconTemplate.png";
+    const icon = __static + "/icons/Template.png";
+    // const trayImage = __static + "/img/ico/iconTemplate.png";
     // eslint-disable-next-line no-undef
-    const trayImagePressed = __static + "/img/macos/pressedIconTemplate.png";
+    const iconInverted = __static + "/icons/InvertedTemplate.png";
+    // const trayImagePressed = __static + "/img/macos/pressedIconTemplate.png";
 
 
-    const tray = new Tray(trayImagePressed);
+    const tray = new Tray(icon);
 
     const contextMenu = createContextMenu(core);
     tray.setContextMenu(contextMenu);
@@ -25,7 +27,7 @@ function createTray(core) {
             connect.visible = state === 'ws-close';
             reconnecting.visible = state === 'ws-reconnect';
 
-            const image = state === 'ws-open' ? trayImage: trayImagePressed
+            const image = state === 'ws-open' ? iconInverted : icon
 
             tray.setImage(image);
             tray.setPressedImage(image);

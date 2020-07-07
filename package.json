@@ -1,5 +1,7 @@
 {
   "name": "dupbit-desktop",
+  "description": "Desktop app for Dupbit",
+  "author": "Joren Vandeweyer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
