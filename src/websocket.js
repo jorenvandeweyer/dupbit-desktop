@@ -96,7 +96,7 @@ const ACTIONS = {
     ...screen,
     'list': {
         input: null,
-        descripion: 'List',
+        description: 'List',
         execute: () => {
             return ACTIONS;
         }

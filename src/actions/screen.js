@@ -5,6 +5,9 @@ const isMac = process.platform === 'darwin'
 
 export default {
     'screen-sleep': {
+        input: {
+            type: 'button'
+        },
         description: 'Sleep',
         execute: async () => {
             if (isMac) {
@@ -17,6 +20,9 @@ export default {
         }
     },
     'screen-lock': {
+        input: {
+            type: 'button'
+        },
         description: 'Lock',
         execute: async () => {
             lockSystem();
@@ -24,6 +30,9 @@ export default {
         }
     },
     'screen-unlock': {
+        input: {
+            type: 'button'
+        },
         description: 'Unlock',
         execute: async() => {
 

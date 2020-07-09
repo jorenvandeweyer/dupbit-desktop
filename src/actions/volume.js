@@ -1,31 +1,48 @@
 import loudness from 'loudness';
 
 export default {
+    'mute-get': {
+        input: null,
+        description: 'Get mute',
+        execute: async () => {
+            const muted = await loudness.getMuted().catch(null);
+            console.log('is muted?', muted);
+            return muted;
+        }
+    },
     'volume-get': {
         input: null,
         description: 'Get volume',
         execute: async () => {
             const volume = await loudness.getVolume().catch(null);
-            const muted = await loudness.getMuted().catch(null);
-
-            return { volume, muted };
+            return volume;
         }
     },
-    'volume-mute': {
-        input: true,
-        description: 'Mute/Unmute',
+    'mute-set': {
+        input: {
+            type: 'switch',
+            default: {
+                action: 'mute-get'
+            }
+        },
+        description: 'Set mute',
         execute: async (mute) => {
             if (typeof mute !== 'boolean') {
                 mute = true;
             }
-
             loudness.setMuted(mute);
 
             return mute;
         },
     },
     'volume-set': {
-        input: 0,
+        input: {
+            type: 'slider',
+            range: [0, 100],
+            default: {
+                action: 'volume-get'
+            },
+        },
         description: 'Set volume',
         execute: async (volume) => {
             if (typeof volume !== 'number') {

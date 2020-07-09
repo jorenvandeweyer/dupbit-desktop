@@ -101,7 +101,8 @@ class Core extends EventEmitter {
         this.ws._shouldRetry = open;
 
         if (open) {
-            this.ws.reconnect();
+            this.ws._retry = 0;
+            this.ws.reconnect(true);
         } else {
             this.ws.destroy();
         }
