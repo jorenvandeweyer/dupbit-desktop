@@ -35,6 +35,11 @@ export default class extends WebSocketClient {
     async reconnect(shouldRetry=false) {
         if (!this._shouldRetry && !shouldRetry) return;
 
+        if (this.readyState < 2) {
+            console.log('not reconnecting', this.readyState);
+            return;
+        }
+
         console.log('reconnecting...');
         if (!this.store.auth) {
             this._shouldRetry = false;
